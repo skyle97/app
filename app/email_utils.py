@@ -247,6 +247,7 @@ def send_email(
     html=None,
     unsubscribe_link=None,
     unsubscribe_via_email=False,
+    ignore_dkim=False,
 ):
     to_email = sanitize_email(to_email)
     if NOT_SEND_EMAIL:
@@ -293,8 +294,9 @@ def send_email(
             )
 
     # add DKIM
-    email_domain = SUPPORT_EMAIL[SUPPORT_EMAIL.find("@") + 1 :]
-    add_dkim_signature(msg, email_domain)
+    if not ignore_dkim:
+        email_domain = SUPPORT_EMAIL[SUPPORT_EMAIL.find("@") + 1 :]
+        add_dkim_signature(msg, email_domain)
 
     msg_raw = to_bytes(msg)
 
