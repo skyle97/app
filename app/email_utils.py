@@ -294,9 +294,9 @@ def send_email(
             )
 
     # add DKIM
-    if not ignore_dkim:
-        email_domain = SUPPORT_EMAIL[SUPPORT_EMAIL.find("@") + 1 :]
-        add_dkim_signature(msg, email_domain)
+    # if not ignore_dkim:
+    #     email_domain = SUPPORT_EMAIL[SUPPORT_EMAIL.find("@") + 1 :]
+    #     add_dkim_signature(msg, email_domain)
 
     msg_raw = to_bytes(msg)
 

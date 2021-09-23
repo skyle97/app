@@ -828,7 +828,7 @@ def forward_email_to_mailbox(
             msg, "List-Unsubscribe-Post", "List-Unsubscribe=One-Click"
         )
 
-    add_dkim_signature(msg, EMAIL_DOMAIN)
+    # add_dkim_signature(msg, EMAIL_DOMAIN)
 
     LOG.d(
         "Forward mail from %s to %s, mail_options:%s, rcpt_options:%s ",
@@ -1062,8 +1062,8 @@ def handle_reply(envelope, msg: Message, rcpt_to: str) -> (bool, str):
         envelope.rcpt_options,
     )
 
-    if should_add_dkim_signature(alias_domain):
-        add_dkim_signature(msg, alias_domain)
+    # if should_add_dkim_signature(alias_domain):
+        # add_dkim_signature(msg, alias_domain)
 
     # generate a mail_from for VERP
     verp_mail_from = f"{BOUNCE_PREFIX_FOR_REPLY_PHASE}+{email_log.id}+@{alias_domain}"
