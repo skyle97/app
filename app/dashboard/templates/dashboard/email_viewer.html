@@ -1,0 +1,48 @@
+{% extends 'default.html' %}
+
+{% set active_page = "dashboard" %}
+
+{% block title %}
+  Email Viewer
+{% endblock %}
+
+{% block default_content %}
+  <a href="{{ url_for('dashboard.refused_email_route') }}" class="btn btn-primary mb-3">
+    << Back to Quarantine
+  </a>
+  <div class="alert alert-info">
+    Received: {{ email_log.created_at }} <br>
+    From: {{ msg["From"] }} <br>
+    To: {{ msg["To"] }} <br>
+    Subject: {{ msg["Subject"] }} <br>
+  </div>
+
+  {% autoescape off %}
+
+  {% if plain %}
+    <div>
+    <hr>
+      <h3>Email in plain text</h3>
+      <div style="border: 1px dotted #E3156A" class="p-2">
+        {{ plain|safe }}
+      </div>
+    </div>
+  {% endif %}
+
+
+
+  {% if html %}
+    <div>
+    <hr>
+      <h3>Email in Html</h3>
+      <div style="border: 1px dotted #E3156A" class="p-2">
+        {{ html|safe }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% endautoescape %}
+
+{% endblock %}
+
+

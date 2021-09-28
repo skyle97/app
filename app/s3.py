@@ -78,6 +78,12 @@ def get_url(key: str, expires_in=3600) -> str:
         )
 
 
+def read(key: str) -> BytesIO:
+    file_path = os.path.join(UPLOAD_DIR, key)
+    return open(file_path)
+    # return BytesIO(open(file_path, "rb").read())
+
+
 def delete(path: str):
     if LOCAL_FILE_UPLOAD:
         os.remove(os.path.join(UPLOAD_DIR, path))
