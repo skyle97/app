@@ -2,6 +2,7 @@ import email
 from email.message import EmailMessage
 
 import arrow
+import pytest
 
 from app.config import MAX_ALERT_24H, EMAIL_DOMAIN, BOUNCE_EMAIL
 from app.db import Session
@@ -130,6 +131,9 @@ def test_parse_full_address():
         "pöstal",
         "abcd@gmail.com",
     )
+
+    with pytest.raises(ValueError):
+        parse_full_address("https://ab.cd")
 
 
 def test_send_email_with_rate_control(flask_client):
